@@ -19,8 +19,8 @@ int main(int argc, char** argv)
   geometry_msgs::Twist speed; // 控制信号载体 Twist message
   while (ros::ok())
   {
-    speed.linear.x = -0.1; // 设置线速度为0.1m/s，正为前进，负为后退
-    speed.angular.z = 0; // 设置角速度为0rad/s，正为左转，负为右转
+    speed.linear.x = 0.1; // 设置线速度为0.1m/s，正为前进，负为后退
+    speed.angular.z = 0.2; // 设置角速度为0rad/s，正为左转，负为右转
     cmdVelPub.publish(speed); // 将刚才设置的指令发送给机器人
     loopRate.sleep();//休眠直到一个频率周期的时间
   }
