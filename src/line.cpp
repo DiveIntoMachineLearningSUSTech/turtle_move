@@ -5,7 +5,7 @@
 #include <time.h>
 
 float PI = 3.1415926;
-enum status{FORWARD, TURN};
+enum status{FORWARD, BACK};
 
 ros::Publisher cmdVelPub;
 void shutdown(int sig)
@@ -27,7 +27,7 @@ int main(int argc, char** argv)
   time_t start = time(NULL);
   float vel_rad = PI/3;
   time_t forward_time = 2;
-  time_t turn_time = PI/2 / vel_rad;
+  time_t turn_time = 2;
   status s = FORWARD;
 
   while (ros::ok())
@@ -37,10 +37,10 @@ int main(int argc, char** argv)
     if (s == FORWARD && seconds >= forward_time)
     {
       start = current;
-      s = TURN;
+      s = BACK;
       ROS_INFO("move_turtle_goforward cpp TURNING!!!!!!!...");
     }
-    else if (s == TURN && seconds >= turn_time)
+    else if (s == BACK && seconds >= turn_time)
     {
       start = current;
       s = FORWARD;
@@ -48,8 +48,8 @@ int main(int argc, char** argv)
     }
 
     
-    speed.linear.x = 0.05; // 设置线速度为0.1m/s，正为前进，负为后退
-    speed.angular.z = s==FORWARD ? 0 : vel_rad; // 设置角速度为0rad/s，正为左转，负为右转
+    speed.linear.x = s==FORWARD ? 0.1 : -0.1; // 设置线速度为0.1m/s，正为前进，负为后退
+    speed.angular.z = 0; // 设置角速度为0rad/s，正为左转，负为右转
     cmdVelPub.publish(speed); // 将刚才设置的指令发送给机器人
     loopRate.sleep();//休眠直到一个频率周期的时间
   }

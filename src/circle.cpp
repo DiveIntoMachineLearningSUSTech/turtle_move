@@ -32,24 +32,8 @@ int main(int argc, char** argv)
 
   while (ros::ok())
   {
-    time_t current = time(NULL);
-    time_t seconds = current - start;
-    if (s == FORWARD && seconds >= forward_time)
-    {
-      start = current;
-      s = TURN;
-      ROS_INFO("move_turtle_goforward cpp TURNING!!!!!!!...");
-    }
-    else if (s == TURN && seconds >= turn_time)
-    {
-      start = current;
-      s = FORWARD;
-      ROS_INFO("move_turtle_goforward cpp FORWARDING!!!!!!...");
-    }
-
-    
-    speed.linear.x = 0.05; // 设置线速度为0.1m/s，正为前进，负为后退
-    speed.angular.z = s==FORWARD ? 0 : vel_rad; // 设置角速度为0rad/s，正为左转，负为右转
+    speed.linear.x = 0.1; // 设置线速度为0.1m/s，正为前进，负为后退
+    speed.angular.z = vel_rad; // 设置角速度为0rad/s，正为左转，负为右转
     cmdVelPub.publish(speed); // 将刚才设置的指令发送给机器人
     loopRate.sleep();//休眠直到一个频率周期的时间
   }
