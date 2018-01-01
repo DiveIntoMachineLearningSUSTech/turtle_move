@@ -32,6 +32,9 @@ int main(int argc, char** argv)
 
   while (ros::ok())
   {
+    time_t current = time(NULL);
+    if (current - start > 5.0f)
+      break;
     speed.linear.x = 0.1; // 设置线速度为0.1m/s，正为前进，负为后退
     speed.angular.z = vel_rad; // 设置角速度为0rad/s，正为左转，负为右转
     cmdVelPub.publish(speed); // 将刚才设置的指令发送给机器人

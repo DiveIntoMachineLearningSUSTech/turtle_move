@@ -25,6 +25,7 @@ int main(int argc, char** argv)
   geometry_msgs::Twist speed; // 控制信号载体 Twist message
 
   time_t start = time(NULL);
+  time_t begin = start;
   float vel_rad = PI/3;
   time_t forward_time = 2;
   time_t turn_time = PI/2 / vel_rad;
@@ -33,6 +34,10 @@ int main(int argc, char** argv)
   while (ros::ok())
   {
     time_t current = time(NULL);
+    time_t elapse = current - begin;
+    if (elapse >= 5.0f)
+      break;
+
     time_t seconds = current - start;
     if (s == FORWARD && seconds >= forward_time)
     {
