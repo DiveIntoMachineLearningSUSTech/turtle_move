@@ -53,7 +53,7 @@ int main(int argc, char** argv)
     }
 
     
-    speed.linear.x = 0.05; // 设置线速度为0.1m/s，正为前进，负为后退
+    speed.linear.x = 0.1; // 设置线速度为0.1m/s，正为前进，负为后退
     speed.angular.z = s==FORWARD ? 0 : vel_rad; // 设置角速度为0rad/s，正为左转，负为右转
     cmdVelPub.publish(speed); // 将刚才设置的指令发送给机器人
     loopRate.sleep();//休眠直到一个频率周期的时间
