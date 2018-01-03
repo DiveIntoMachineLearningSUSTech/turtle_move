@@ -199,3 +199,7 @@ include_directories(
 # catkin_add_nosetests(test)
 add_executable(move_turtle_goforward src/move_turtle_goforward.cpp)  
 target_link_libraries(move_turtle_goforward ${catkin_LIBRARIES})
+add_executable(line src/line.cpp)
+target_link_libraries(line ${catkin_LIBRARIES})
+add_executable(circle src/circle.cpp)
+target_link_libraries(circle ${catkin_LIBRARIES})
