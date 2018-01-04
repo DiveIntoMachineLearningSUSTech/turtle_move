@@ -26,9 +26,10 @@ int main(int argc, char** argv)
 
   time_t start = time(NULL);
   time_t begin = start;
-  float vel_rad = PI/3;
-  time_t forward_time = 2;
-  time_t turn_time = PI/2 / vel_rad;
+  float vel_rad = PI/2.f / (5.f/8.f);
+  time_t forward_time = 5.f/16.f;
+  // time_t turn_time = PI/2 / vel_rad;
+  time_t turn_time = 5.f/16.f;
   status s = FORWARD;
 
   while (ros::ok())
