@@ -35,7 +35,7 @@ int main(int argc, char** argv)
   {
     time_t current = time(NULL);
     time_t elapse = current - begin;
-    if (elapse >= 5.0f)
+    if (elapse >= 20.0f)
       break;
 
     time_t seconds = current - start;
